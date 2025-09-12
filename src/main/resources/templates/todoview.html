@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><!--タイムリーフ宣言-->
+<head>
+	<title>タスク管理ツール</title><!--ウェブページのタイトル、リンク名-->
+	<meta charset="UTF-8">
+	<!--<link rel="stylesheet" th:href="@{/ファイル名.css}">-->
+</head>
+<body>
+	<header><!--ページ内の先頭タイトルロゴ-->
+		<h1>Todoタスク一覧</h1>
+	</header>
+	<main><!--メインコンテンツ-->
+		<div class="menu">
+			<a th:href="@{/todoRegist}">新規登録</a><!--登録ボタン追加する-->
+			<!--ログアウト機能いれるとき-->
+		</div>		
+		<div class="table"><!--DBの表-->
+			<table border="1">
+				<thead>
+					<tr><!--tablerow表の行-->
+						<th>ID</th>
+						<th>タイトル</th>
+						<th>内容</th>
+						<th>期限</th>
+						<th>ステータス</th>
+						<th>編集</th>
+						<th>削除</th>
+					</tr>
+				</thead>
+				<tbody><!--表の本体-->
+					<tr th:each="item : ${items}"><!--１行ずつループ処理-->
+						<td><a th:href="@{/}" th:text="${item.taskId}"></a></td>
+						<td th:text="${item.task_title}"></td>
+						<td th:text="${item.task_content}"></td>
+						<td th:text="${item.task_deadline}"></td>
+						<td th:text="${item.task_status}"></td>
+						<td><a th:href="@{/edit/{id}(id=${item.taskId})}">編集</a></td><!--リンク-->
+						<td><a th:href="@{/delete/{id}(id=${item.taskId})}">削除</a></td>
+					</tr>
+				</tbody>
+			</table>			
+		</div>
+	</main>
+	<footer>
+		<!--参考文献の表示をするところ-->
+	</footer>
+</body>
+</html>
