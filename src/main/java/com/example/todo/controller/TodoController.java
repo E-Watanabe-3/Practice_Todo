@@ -18,8 +18,7 @@ public class TodoController {
 		this.todoDao = todoDao;
 	}
 	
-	//一覧画面をリクエスト。
-	@GetMapping("/todo")
+	//一覧画面をリクエスト。main
 	public ModelAndView top(Model model) {
 		
 		List<TodoData> items = todoDao.findAll();
