@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.example.todo.DataEntityService.TodoData;
+import com.example.todo.FormDto.TodoForm;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +30,7 @@ public class TodoDao {
 	public List<TodoData> findAll(){
 		
 		String sql = "SELECT * FROM task_list";
-		//
+		
 		try {
 		
 		//複数のエンティティレコードを返す
@@ -48,7 +49,19 @@ public class TodoDao {
 		} catch (DataAccessException e) {
 			log.error("DB取得エラー：{}", e.getMessage(), e);
 			throw new RuntimeException("DB取得エラー", e);
-		}
+		}	
+	}
 	
+	//新規登録
+	public void insert(TodoForm form) {
+		try {
+			String sql = "INSERT INTO task_list (task_title, task_content, task_deadline, task_status) VALUES (?, ?, ?, ?)";
+			jdbcTemplate.update(sql, form.getTask_title(), form.getTask_content(), form.getTask_deadline(), form.getTask_status());
+	
+		} catch (DataAccessException e) {
+			log.error("DB取得エラー：{}", e.getMessage(), e);
+			throw new RuntimeException("DB取得エラー", e);
+			}
+			
 	}
 }
