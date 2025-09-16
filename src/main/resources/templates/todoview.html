@@ -11,9 +11,10 @@
 	</header>
 	<main><!--メインコンテンツ-->
 		<div class="menu">
-			<a th:href="@{/todoRegist}">新規登録</a><!--登録ボタン追加する-->
+			<a th:href="@{/todo/addTodo}">新規登録</a>
+			<br><br>
 			<!--ログアウト機能いれるとき-->
-		</div>		
+		</div>
 		<div class="table"><!--DBの表-->
 			<table border="1">
 				<thead>
@@ -29,7 +30,7 @@
 				</thead>
 				<tbody><!--表の本体-->
 					<tr th:each="item : ${items}"><!--１行ずつループ処理-->
-						<td><a th:href="@{/}" th:text="${item.taskId}"></a></td>
+						<td th:text="${item.taskId}"></td>
 						<td th:text="${item.task_title}"></td>
 						<td th:text="${item.task_content}"></td>
 						<td th:text="${item.task_deadline}"></td>

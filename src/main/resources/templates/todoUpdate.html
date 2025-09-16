@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><!--タイムリーフ宣言-->
+<head>
+	<title>タスク管理ツール</title><!--ウェブページのタイトル、リンク名-->
+	<meta charset="UTF-8">
+	<!--<link rel="stylesheet" th:href="@{/ファイル名.css}">-->
+</head>
+<body>
+	<header><!--ページ内の先頭タイトルロゴ-->
+		<h1>Todoタスク登録・更新</h1>
+	</header>
+	<main><!--メインコンテンツ-->
+		<p><a href="/todo">戻る</a></p><br>
+		<div>
+			<form action="/todo/addTodo" method="post">
+				<!--<label for="task_id">ID</label><br>入力不要-->
+				<label for="task_title">タイトル</label><br>
+				<input type="text" id="task_title" name="task_title" required><br><br>
+				<label for="task_content">内容</label><br>
+				<input type="text" id="task_content" name="task_content"><br><br>
+				<label for="task_deadline">期限</label><br>
+				<input type="date" id="task_deadline" name="task_deadline" required><br><br>
+				<script> //日付の最小選択を今日の日付にする
+				  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+				  document.getElementById('task_deadline').setAttribute('min', today);
+				</script>
+				<label for="task_status">ステータス</label><br>
+				<input type="radio" id="notStart" name="task_status" value="未着手" checked><!--checked=デフォルト-->
+				<label for="notStart">未着手</label>
+				<input type="radio" id="now" name="task_status" value="進行中">
+				<label for="now">進行中</label>
+				<input type="radio" id="complete" name="task_status" value="完了">
+				<label for="complete">完了</label>
+				<br><br>
+				<input type="submit" value="登録">
+			</form>
+		</div>
+	</main>
+	<footer>
+		<!--参考文献の表示をするところ-->
+	</footer>
+</body>
+</html>
